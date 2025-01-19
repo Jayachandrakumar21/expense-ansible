@@ -1,2 +1,5 @@
 - name: testing nodes by ping module
-  hosts: 
+  hosts: expense
+  tasks:
+    - name: ping all the node servers
+      ansible.builtin.ping:
