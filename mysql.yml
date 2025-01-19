@@ -20,3 +20,8 @@
         name: mysqld
         state: started
         enabled: yes
+
+    - name: changing root-default password
+      ansible.builtin.user:
+        name: root
+        password: "{{ root_pass | password_hash('ExpenseApp@1') }}"
