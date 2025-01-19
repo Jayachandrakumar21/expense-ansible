@@ -2,4 +2,8 @@
   hosts: db
   become: yes
   tasks:
-    - name:
+    - name: install mysql-server
+      community.mysql.mysql_db:
+        name: mysql-server
+        state: present
+      
