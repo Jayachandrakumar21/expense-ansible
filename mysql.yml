@@ -24,7 +24,18 @@
         state: started
         enabled: yes
 
-    - name: changing root-default password
-      ansible.builtin.user:
-        name: root
-        password: "{{ root_pass | password_hash('ExpenseApp@1') }}"
+    - name: connect to mysql server
+      community.mysql.mysql_info:
+        login_user: root
+        login_password: ExpenseApp@1
+        login_host: mysql.simplifysuccess.life
+      register: mysql_info
+
+    - name: print the output
+      ansible.builtin.debug:
+        msg: "Mysql info: {{ mysql_info }}"
+
+    # - name: changing root-default password
+    #   ansible.builtin.user:
+    #     name: root
+    #     password: "{{ root_pass | password_hash('ExpenseApp@1') }}"
