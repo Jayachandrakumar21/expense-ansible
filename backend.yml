@@ -48,8 +48,11 @@
 
     - name: Install python lib
       ansible.builtin.pip:
-        name: PyMySQL
+        name: "{{ item }}"
         executable: pip3.9
+      loop: 
+      - PyMySQL
+      - cryptography
 
     - name: mysql schema setup
       community.mysql.mysql_db:
@@ -59,4 +62,13 @@
         login_password: ExpenseApp@1
         login_host: mysql.simplifysuccess.life
         target: /app/schema/backend.sql
+
+    - name: deamon reload and restart
+      ansible.builtin.systemd_service:
+        name: backend
+        enabled: true
+        state: restarted
+        daemon_reload: true
+       
+        
 
