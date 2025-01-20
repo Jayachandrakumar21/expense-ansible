@@ -1,0 +1,5 @@
+- name: configure applicatio server
+  hosts: app
+  become: yes
+  tasks:
+    - name:

@@ -1,9 +1,7 @@
 - name: configuring mysql database-server
   hosts: db
   become: yes
-  # become_method: sudo
-  # become_user: root
-  # become_flags: '-i'
+
   tasks:
     - name: Install MySQL libraries
       ansible.builtin.pip:
